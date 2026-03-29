@@ -8,6 +8,7 @@ type Props = {
 
 /**
  * Widget Turnstile (solo se renderiza si existe VITE_TURNSTILE_SITE_KEY).
+ * El modo del desafío (p. ej. Managed) se define en el panel de Turnstile; aquí no forzamos `appearance` para no contradecirlo.
  * Usa ref para llamar a reset() tras errores de login/registro.
  */
 export const AuthTurnstile = forwardRef<TurnstileInstance | undefined, Props>(
@@ -28,7 +29,6 @@ export const AuthTurnstile = forwardRef<TurnstileInstance | undefined, Props>(
           onError={() => onTokenChange(null)}
           options={{
             language: 'es',
-            appearance: 'interaction-only',
             theme: 'light',
           }}
         />

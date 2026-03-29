@@ -114,7 +114,7 @@ El sitio está pensado para alojarse como **sitio estático** tras `npm run buil
 
 Sin `TURNSTILE_SECRET_KEY` en el entorno de Functions, el endpoint devolverá error y el login/registro no pasarán la verificación.
 
-En el panel de Turnstile, añade en **Hostnames** tu dominio de producción y, si pruebas en local, `localhost` (y el origen que uses, p. ej. `127.0.0.1`).
+En el panel de Turnstile → **Hostnames**, usa el **nombre completo** de cada origen (FQDN), uno por línea: p. ej. `nacionsilver.com`, `www.nacionsilver.com` (no basta con `www` suelto), y para desarrollo `localhost` (y `127.0.0.1` si lo usas como origen).
 
 **Rutas SPA (React Router):** en el repo hay `public/_redirects` con regla `/* → /index.html` (200) para que las recargas en rutas profundas funcionen en Pages.
 
