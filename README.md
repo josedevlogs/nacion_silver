@@ -1,134 +1,159 @@
 # Nación Silver
 
-Hub digital para la comunidad SILVERMOON diseñado para personas mayores de 50 años.
+Hub digital para la comunidad SILVERMOON (personas mayores de 50 años): perfil, retos, beneficios, comunidad, panel de administración y Supabase como backend.
 
-## Características Principales
+**Repositorio:** [github.com/josedevlogs/nacion_silver](https://github.com/josedevlogs/nacion_silver)
 
-### Sistema de Gamificación
-- **Pasaporte Silver**: 4 niveles de progresión (Silver, Residente Silver, Ciudadano Silver, Embajador Silver)
-- **Puntos Silver**: Sistema de recompensas por completar actividades
-- **Retos**: Desafíos internos y externos para ganar puntos
+---
 
-### Funcionalidades
-- ✅ Registro e inicio de sesión con validación de edad (50+)
-- ✅ Perfil completo con datos obligatorios
-- ✅ Dashboard personalizado con estadísticas
-- ✅ Sistema de retos con múltiples métodos de validación (manual, código, QR)
-- ✅ Catálogo de beneficios por nivel
-- ✅ Silver Club con suscripciones
-- ✅ Integración preparada con plataformas del ecosistema SILVERMOON
+## Stack
 
-### Diseño Accesible
-- Textos grandes y claros
-- Botones espaciados y de fácil interacción
-- Navegación simple e intuitiva
-- Colores de alto contraste (sin tonos púrpura/índigo)
-- Responsive mobile-first
+| Área | Tecnología |
+|------|------------|
+| Frontend | React 18, TypeScript, Vite 8 |
+| Estilos | Tailwind CSS |
+| Rutas | React Router v7 |
+| Backend | Supabase (PostgreSQL, Auth, RLS) |
+| Iconos | Lucide React |
 
-## Tecnologías
+---
 
-- **Frontend**: React 18 + TypeScript + Vite
-- **Estilos**: TailwindCSS con sistema de diseño personalizado
-- **Base de Datos**: Supabase (PostgreSQL)
-- **Autenticación**: Supabase Auth
-- **Iconos**: Lucide React
-- **Enrutamiento**: React Router v7
+## Requisitos
 
-## Instalación
+- **Node.js** 20 o superior (recomendado; CI usa 20).
+- **npm** 9+ (incluido con Node).
+- Cuenta y proyecto en **Supabase** vinculado a este esquema (migraciones en `supabase/migrations/`).
+
+---
+
+## Puesta en marcha (local)
 
 ```bash
-# Instalar dependencias
+# Clonar (ajusta la URL si usas fork u otra organización)
+git clone https://github.com/josedevlogs/nacion_silver.git
+cd nacion_silver
+
+# Dependencias
 npm install
 
-# Configurar variables de entorno (ya configuradas en .env)
-# VITE_SUPABASE_URL=tu_url_de_supabase
-# VITE_SUPABASE_ANON_KEY=tu_clave_anonima
+# Variables de entorno (obligatorio)
+copy .env.example .env   # Windows PowerShell/CMD: copy; macOS/Linux: cp
+# Edita .env y pega URL y anon key del proyecto Supabase (Settings → API)
 
-# Iniciar en desarrollo
+# Desarrollo — http://localhost:5173 (puerto por defecto de Vite)
 npm run dev
-
-# Construir para producción
-npm run build
 ```
 
-## Estructura de la Base de Datos
+Si faltan `VITE_SUPABASE_URL` o `VITE_SUPABASE_ANON_KEY`, la app falla al iniciar (ver `src/lib/supabase.ts`).
 
-### Tablas Principales
-- `user_profiles`: Perfiles de usuario con datos completos
-- `passport_levels`: Definición de niveles del Pasaporte Silver
-- `silver_points_transactions`: Historial de transacciones de puntos
-- `challenges`: Definición de retos
-- `user_challenges`: Seguimiento de retos por usuario
-- `contents`: Artículos, anuncios y eventos
-- `benefits`: Beneficios y ventajas por nivel
-- `silver_club_subscriptions`: Suscripciones premium
+### Scripts útiles
 
-### Funciones de Base de Datos
-- `add_silver_points()`: Agregar puntos y actualizar nivel automáticamente
-- `complete_challenge()`: Completar reto con validación
-- `mark_content_completed()`: Marcar contenido como completado
-- `toggle_content_favorite()`: Agregar/quitar favoritos
-- `get_user_dashboard_stats()`: Obtener estadísticas del usuario
+| Comando | Descripción |
+|---------|-------------|
+| `npm run dev` | Servidor de desarrollo Vite |
+| `npm run build` | Build de producción → carpeta `dist/` |
+| `npm run preview` | Previsualizar el build local |
+| `npm run lint` | ESLint |
+| `npm run typecheck` | TypeScript sin emitir archivos |
+| `npm run db:link` | Enlazar CLI Supabase al proyecto remoto |
+| `npm run db:push` | Aplicar migraciones al remoto (requiere Supabase CLI y enlace) |
+| `npm run db:start` | Supabase local (Docker) |
 
-## Flujo de Usuario
+---
 
-1. **Registro**: Email + contraseña
-2. **Completar Perfil**: Datos obligatorios (nombre, edad 50+, DNI, ubicación, intereses)
-3. **Dashboard**: Ver progreso, puntos, nivel y retos recomendados
-4. **Retos**: Explorar y completar retos para ganar puntos
-5. **Beneficios**: Desbloquear beneficios según nivel
-6. **Silver Club**: Suscripción opcional para beneficios premium
+## Variables de entorno
 
-## Datos de Prueba
+Defínelas en un archivo **`.env`** en la raíz (no lo subas a git; ya está en `.gitignore`).
 
-El sistema incluye datos de ejemplo:
-- 6 retos de diferentes categorías
-- 6 beneficios para distintos niveles
-- 1 reto especial con código: **SILVER2024**
+| Variable | Dónde obtenerla | Uso |
+|----------|-----------------|-----|
+| `VITE_SUPABASE_URL` | Supabase → **Project Settings → API → Project URL** | URL del proyecto |
+| `VITE_SUPABASE_ANON_KEY` | Supabase → **Project Settings → API → anon public** | Clave pública del cliente (segura con RLS) |
+| `VITE_TURNSTILE_SITE_KEY` | Cloudflare Turnstile → tu widget → **Site Key** | Protege login/registro (opcional en local si se deja vacío) |
+| `VITE_TURNSTILE_VERIFY_SKIP` | Solo desarrollo: `true` | Omite la llamada al endpoint de verificación si pruebas con site key en local sin Pages Functions |
+| `VITE_TURNSTILE_VERIFY_URL` | Opcional | URL absoluta del `POST` de verificación si no usas el path por defecto |
 
-## Próximos Pasos (No Implementados)
+**No** uses la *service role* en el frontend. Cualquier variable expuesta al bundle debe llevar prefijo `VITE_` en Vite.
 
-### Panel de Administrador
-- Gestión completa de usuarios
-- CMS para contenidos y retos
-- Gestión de beneficios (crear, editar, eliminar)
-- Sistema de analíticas y métricas
-- Confirmación de pagos offline
-- Asignación manual de puntos
+Plantilla: copia `.env.example` a `.env` y rellena los valores.
 
-### Sistema de Contenidos
-- Feed con scroll infinito
-- Interacciones (vistas, favoritos, completados)
-- Categorías y filtros
+---
 
-### Integraciones
-- Aula Silver (cursos)
-- Microaula (contenidos cortos)
-- Talentos Silver (empleo)
-- Bienestar Silver (bienestar)
+## Base de datos (Supabase)
 
-### Silver Club Completo
-- Integración con PayPal
-- Sistema de pagos offline con validación
-- Períodos de prueba personalizados
-- Contenido exclusivo
+- Esquema y políticas RLS viven en **`supabase/migrations/`** (orden cronológico por nombre de archivo).
+- Para alinear un entorno remoto: Supabase Dashboard (**SQL** o migraciones**) o** Supabase CLI (`npm run db:link` / `npm run db:push`) según tu flujo.
+- Datos de ejemplo opcionales: ver migraciones `seed` si aplican a tu entorno.
 
-## Seguridad
+---
 
-- Row Level Security (RLS) habilitado en todas las tablas
-- Políticas restrictivas por defecto
-- Validación de edad en registro
-- Autenticación con Supabase Auth
-- Roles de usuario (user, moderator, admin)
+## Alojamiento y despliegue
 
-## Notas Importantes
+### Frontend (producción)
 
-- La edad mínima para registro es 50 años
-- Los puntos y niveles se actualizan automáticamente
-- Las funciones de base de datos manejan la lógica de negocio
-- El sistema está preparado para integración SSO con otras plataformas SILVERMOON
-- El diseño es mobile-first y accesible para personas mayores
+El sitio está pensado para alojarse como **sitio estático** tras `npm run build`.
+
+**Cloudflare Pages** (configuración recomendada y probada):
+
+| Ajuste | Valor |
+|--------|--------|
+| **Build command** | `npm run build` (no uses solo `vite build`: Vite no está global en el runner) |
+| **Build output directory** | `dist` (sin espacios ni barras extra) |
+| **Root directory** | `/` (raíz del repo) |
+| **Framework preset** | None o Vite, siempre que el comando sea `npm run build` |
+
+**Variables de entorno en Cloudflare** (Production / Preview según necesites):
+
+- `VITE_SUPABASE_URL`
+- `VITE_SUPABASE_ANON_KEY`
+- `VITE_TURNSTILE_SITE_KEY` — misma **Site Key** pública del widget Turnstile.
+
+**Turnstile (verificación en servidor):** el repo incluye una **Pages Function** en `functions/api/verify-turnstile.js` que llama a la API `siteverify` de Cloudflare. Añade una variable **secreta** para Functions (no es `VITE_*`; no va en el bundle del front):
+
+- `TURNSTILE_SECRET_KEY` — **Secret Key** del mismo sitio Turnstile (Turnstile → tu widget → Secret Key). Configúrala en Pages → **Settings** → **Environment variables** en el apartado correspondiente a **Functions** (o variables cifradas disponibles para el build de Functions, según la UI actual).
+
+Sin `TURNSTILE_SECRET_KEY` en el entorno de Functions, el endpoint devolverá error y el login/registro no pasarán la verificación.
+
+En el panel de Turnstile, añade en **Hostnames** tu dominio de producción y, si pruebas en local, `localhost` (y el origen que uses, p. ej. `127.0.0.1`).
+
+**Rutas SPA (React Router):** en el repo hay `public/_redirects` con regla `/* → /index.html` (200) para que las recargas en rutas profundas funcionen en Pages.
+
+### Repositorio Git
+
+Ramas habituales (misma base, flujo por equipo):
+
+- `main` — integración / producción en Pages si esa es la rama de producción.
+- `qa`, `dev`, `nsfront`, `nsback` — entornos o líneas de trabajo; ajusta en Cloudflare qué rama dispara cada deploy.
+
+### CI (GitHub Actions)
+
+En **`.github/workflows/ci.yml`**: en cada push/PR a `main` se ejecutan `npm ci`, lint, typecheck y `npm run build`.
+
+---
+
+## Estructura relevante del proyecto
+
+```
+src/                 # App React (páginas, componentes, contexts)
+src/lib/supabase.ts  # Cliente Supabase + env VITE_*
+src/lib/turnstileVerify.ts  # POST del token Turnstile al endpoint
+functions/api/verify-turnstile.js  # Pages Function: siteverify con TURNSTILE_SECRET_KEY
+public/_redirects    # SPA fallback (Cloudflare / estáticos)
+supabase/migrations/ # SQL versionado
+.env.example         # Plantilla de variables (sin secretos)
+```
+
+---
+
+## Características (resumen)
+
+- Registro e inicio de sesión (Supabase Auth), perfil y dashboard.
+- Retos, beneficios, contenidos, comunidad (feed, grupos), Club Silver.
+- Panel de administración (rutas `/admin/...`) para contenidos, retos, usuarios, etc.
+- RLS en Supabase; rol `admin` y políticas que usan `is_admin()` donde aplica.
+
+---
 
 ## Licencia
 
-Propietario - SILVERMOON
+Propietario — SILVERMOON.

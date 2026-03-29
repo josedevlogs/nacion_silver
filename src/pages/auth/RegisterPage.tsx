@@ -1,9 +1,12 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, useRef, FormEvent } from 'react';
+import type { TurnstileInstance } from '@marsidev/react-turnstile';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '../../components/ui/Button';
 import { Input } from '../../components/ui/Input';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/Card';
+import { AuthTurnstile } from '../../components/auth/AuthTurnstile';
+import { isTurnstileEnabled, verifyTurnstileToken } from '../../lib/turnstileVerify';
 import { UserPlus } from 'lucide-react';
 
 export function RegisterPage() {
@@ -14,6 +17,8 @@ export function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileInstance | null>(null);
 
   useEffect(() => {
     if (authLoading) return;
@@ -50,6 +55,22 @@ export function RegisterPage() {
     setLoading(true);
 
     try {
+      if (isTurnstileEnabled()) {
+        if (!turnstileToken) {
+          setError('Completa la verificación de seguridad antes de continuar.');
+          setLoading(false);
+          return;
+        }
+        const verify = await verifyTurnstileToken(turnstileToken);
+        if (!verify.ok) {
+          setError(verify.error ?? 'Verificación de seguridad no válida.');
+          turnstileRef.current?.reset();
+          setTurnstileToken(null);
+          setLoading(false);
+          return;
+        }
+      }
+
       const { error: signUpError } = await signUp(email, password);
       if (signUpError) {
         if (signUpError.message.includes('already registered')) {
@@ -57,6 +78,8 @@ export function RegisterPage() {
         } else {
           setError('Error al crear la cuenta. Por favor intenta de nuevo.');
         }
+        turnstileRef.current?.reset();
+        setTurnstileToken(null);
         setLoading(false);
         return;
       }
@@ -64,6 +87,8 @@ export function RegisterPage() {
       navigate('/completar-perfil');
     } catch {
       setError('Error inesperado. Por favor intenta de nuevo.');
+      turnstileRef.current?.reset();
+      setTurnstileToken(null);
       setLoading(false);
     }
   };
@@ -122,6 +147,8 @@ export function RegisterPage() {
                 required
                 autoComplete="new-password"
               />
+
+              <AuthTurnstile ref={turnstileRef} onTokenChange={setTurnstileToken} />
 
               <Button type="submit" fullWidth loading={loading} size="lg">
                 Crear Cuenta
