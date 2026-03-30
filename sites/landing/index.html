@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Nación Silver — comunidad digital SILVERMOON para personas 50+. Pasaporte Silver, beneficios y lista de espera."
+    />
+    <title>Nación Silver — SILVERMOON Venezuela</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%230284c7'/%3E%3C/svg%3E" />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary-600 focus:px-4 focus:py-3 focus:text-white focus:outline-none focus:ring-4 focus:ring-primary-200"
+      >Saltar al contenido</a
+    >
+
+    <header
+      class="sticky top-0 z-50 border-b border-neutral-200/80 bg-white/95 backdrop-blur-sm shadow-sm"
+    >
+      <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
+        <a href="#" class="text-xl font-bold text-primary-700 sm:text-2xl">Nación Silver</a>
+
+        <button
+          type="button"
+          id="nav-toggle"
+          class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border-2 border-neutral-300 text-neutral-800 hover:bg-neutral-100 focus:outline-none focus:ring-4 focus:ring-primary-200 md:hidden"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Abrir menú"
+        >
+          <span class="nav-open" aria-hidden="true">☰</span>
+          <span class="nav-close hidden" aria-hidden="true">✕</span>
+        </button>
+
+        <nav
+          id="nav-panel"
+          class="hidden w-full flex-col gap-1 border-t border-neutral-200 bg-white py-4 md:flex md:w-auto md:flex-row md:items-center md:gap-2 md:border-0 md:bg-transparent md:py-0"
+          aria-label="Principal"
+        >
+          <a
+            href="#que-es"
+            class="rounded-lg px-4 py-3 text-lg font-semibold text-neutral-700 hover:bg-primary-50 hover:text-primary-800 md:py-2"
+            >Qué es</a
+          >
+          <a
+            href="#beneficios"
+            class="rounded-lg px-4 py-3 text-lg font-semibold text-neutral-700 hover:bg-primary-50 hover:text-primary-800 md:py-2"
+            >Beneficios</a
+          >
+          <a
+            href="#pasaporte"
+            class="rounded-lg px-4 py-3 text-lg font-semibold text-neutral-700 hover:bg-primary-50 hover:text-primary-800 md:py-2"
+            >Pasaporte</a
+          >
+          <a
+            href="#confianza"
+            class="rounded-lg px-4 py-3 text-lg font-semibold text-neutral-700 hover:bg-primary-50 hover:text-primary-800 md:py-2"
+            >Confianza</a
+          >
+          <a
+            href="#waitlist"
+            class="mt-2 rounded-lg bg-primary-600 px-4 py-3 text-center text-lg font-semibold text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-200 md:mt-0 md:ml-2"
+            >Lista de espera</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido" class="flex-1">
+      <!-- Hero -->
+      <section
+        class="hero-enter border-b border-neutral-200 bg-gradient-to-br from-primary-50 via-white to-secondary-50 px-4 py-16 sm:py-24"
+        aria-labelledby="hero-title"
+      >
+        <div class="mx-auto max-w-4xl text-center">
+          <p class="mb-3 text-lg font-semibold text-primary-700">SILVERMOON Venezuela</p>
+          <h1 id="hero-title" class="mb-6 text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
+            Nación Silver
+          </h1>
+          <p class="mx-auto mb-10 max-w-2xl text-xl text-neutral-600 sm:text-2xl">
+            Tu espacio digital para pertenecer, crecer y disfrutar beneficios pensados para ti: comunidad, Pasaporte
+            Silver y conexión con el ecosistema SILVERMOON.
+          </p>
+          <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="#waitlist"
+              class="inline-flex min-h-[48px] min-w-[200px] items-center justify-center rounded-xl bg-primary-600 px-8 py-4 text-lg font-semibold text-white shadow-md transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-200"
+              >Únete a la lista de espera</a
+            >
+            <a
+              href="#que-es"
+              class="inline-flex min-h-[48px] items-center justify-center rounded-xl border-2 border-primary-600 px-8 py-4 text-lg font-semibold text-primary-700 hover:bg-primary-50 focus:outline-none focus:ring-4 focus:ring-primary-200"
+              >Qué es Nación Silver</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Qué es -->
+      <section id="que-es" class="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20">
+        <div class="reveal-once mx-auto max-w-6xl">
+          <h2 class="mb-8 text-center text-3xl font-bold text-neutral-900 sm:text-4xl">Qué es Nación Silver</h2>
+          <ul class="mx-auto max-w-3xl space-y-6 text-lg text-neutral-700 sm:text-xl">
+            <li class="flex gap-4">
+              <span class="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xl" aria-hidden="true">✦</span>
+              <span
+                ><strong class="text-neutral-900">Comunidad digital</strong> — un lugar claro y amable para conectar con personas que comparten tu etapa de vida.</span
+              >
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xl" aria-hidden="true">✦</span>
+              <span
+                ><strong class="text-neutral-900">Pasaporte Silver</strong> — tu progreso con <strong>nivel</strong> y
+                <strong>puntos</strong> que reconocen tu participación.</span
+              >
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xl" aria-hidden="true">✦</span>
+              <span
+                ><strong class="text-neutral-900">Ecosistema SILVERMOON</strong> — una misma identidad para enlazar con
+                formación, bienestar y oportunidades cuando estén disponibles.</span
+              >
+            </li>
+            <li class="flex gap-4">
+              <span class="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-100 text-xl" aria-hidden="true">✦</span>
+              <span
+                ><strong class="text-neutral-900">Pensado para ti</strong> — texto grande, navegación sencilla y respeto
+                por el acceso a cualquier edad.</span
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Beneficios -->
+      <section
+        id="beneficios"
+        class="scroll-mt-24 border-y border-neutral-200 bg-white px-4 py-16 sm:px-6 sm:py-20"
+      >
+        <div class="reveal-once mx-auto max-w-6xl">
+          <h2 class="mb-8 text-center text-3xl font-bold text-neutral-900 sm:text-4xl">Beneficios para ti</h2>
+          <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm">
+              <h3 class="mb-3 text-2xl font-bold text-neutral-900">Pertenencia</h3>
+              <p class="text-lg text-neutral-600">Siente que formas parte de una comunidad que te valora.</p>
+            </div>
+            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm">
+              <h3 class="mb-3 text-2xl font-bold text-neutral-900">Reconocimiento</h3>
+              <p class="text-lg text-neutral-600">Tu nivel y tus puntos reflejan tu camino dentro de Nación Silver.</p>
+            </div>
+            <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-8 shadow-sm sm:col-span-2 lg:col-span-1">
+              <h3 class="mb-3 text-2xl font-bold text-neutral-900">Ventajas según tu nivel</h3>
+              <p class="text-lg text-neutral-600">
+                Accede a beneficios que crecen con tu participación en la comunidad.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pasaporte -->
+      <section id="pasaporte" class="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20">
+        <div class="reveal-once mx-auto max-w-4xl text-center">
+          <h2 class="mb-6 text-3xl font-bold text-neutral-900 sm:text-4xl">Pasaporte Silver</h2>
+          <p class="mb-8 text-xl text-neutral-600 sm:text-2xl">
+            Es la forma de ver <strong class="text-neutral-800">tu nivel</strong> y <strong class="text-neutral-800">tus puntos</strong> en un solo lugar. Así
+            reconocemos tu esfuerzo y te abrimos la puerta a más beneficios en la comunidad.
+          </p>
+          <div class="inline-flex flex-wrap items-center justify-center gap-4 rounded-2xl bg-primary-50 px-8 py-6 text-lg text-primary-900">
+            <span class="font-semibold">Nivel</span>
+            <span class="text-neutral-400" aria-hidden="true">·</span>
+            <span class="font-semibold">Puntos Silver</span>
+            <span class="text-neutral-400" aria-hidden="true">·</span>
+            <span class="font-semibold">Tu progreso visible</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Confianza -->
+      <section
+        id="confianza"
+        class="scroll-mt-24 border-t border-neutral-200 bg-gradient-to-b from-secondary-50/50 to-white px-4 py-16 sm:px-6 sm:py-20"
+      >
+        <div class="reveal-once mx-auto max-w-3xl text-center">
+          <h2 class="mb-6 text-3xl font-bold text-neutral-900 sm:text-4xl">Confianza SILVERMOON</h2>
+          <p class="text-xl leading-relaxed text-neutral-700 sm:text-2xl">
+            SILVERMOON impulsa experiencias digitales <strong>accesibles</strong> y
+            <strong>respetuosas</strong> con las personas mayores. Nación Silver es parte de ese compromiso en Venezuela.
+          </p>
+        </div>
+      </section>
+
+      <!-- Waitlist -->
+      <section
+        id="waitlist"
+        class="scroll-mt-24 border-t border-neutral-200 bg-primary-600 px-4 py-16 text-white sm:px-6 sm:py-20"
+      >
+        <div class="reveal-once mx-auto max-w-2xl">
+          <h2 class="mb-4 text-center text-3xl font-bold sm:text-4xl">Lista de espera</h2>
+          <p class="mb-10 text-center text-lg text-primary-100 sm:text-xl">
+            Déjanos tu correo y te avisaremos cuando abramos el acceso oficial.
+          </p>
+
+          <div
+            id="waitlist-config-missing"
+            class="hidden rounded-lg border-2 border-amber-300 bg-amber-50 p-6 text-center text-lg text-amber-950"
+            role="alert"
+          >
+            <p>Configuración incompleta: falta definir las variables de entorno de Supabase para enviar el formulario.</p>
+          </div>
+
+          <div
+            id="waitlist-turnstile-missing"
+            class="hidden rounded-lg border-2 border-amber-300 bg-amber-50 p-6 text-center text-lg text-amber-950"
+            role="alert"
+          >
+            <p>
+              Configuración incompleta: falta <strong class="font-semibold">VITE_TURNSTILE_SITE_KEY</strong> y la función
+              de verificación en Cloudflare (secret <strong class="font-semibold">TURNSTILE_SECRET_KEY</strong>) para
+              proteger el formulario contra bots.
+            </p>
+          </div>
+
+          <form id="waitlist-form" class="space-y-6 rounded-2xl bg-white p-6 shadow-xl sm:p-10" novalidate>
+            <div>
+              <label for="email" class="mb-2 block text-lg font-semibold text-neutral-800">Correo electrónico</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                placeholder="tu@correo.com"
+                class="min-h-[48px] w-full rounded-lg border-2 border-neutral-300 px-4 py-3 text-lg text-neutral-900 placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-200"
+              />
+            </div>
+            <div>
+              <label for="full_name" class="mb-2 block text-lg font-semibold text-neutral-800"
+                >Nombre (opcional)</label
+              >
+              <input
+                id="full_name"
+                name="full_name"
+                type="text"
+                autocomplete="name"
+                placeholder="Tu nombre"
+                class="min-h-[48px] w-full rounded-lg border-2 border-neutral-300 px-4 py-3 text-lg text-neutral-900 placeholder:text-neutral-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-200"
+              />
+            </div>
+            <div>
+              <p class="mb-3 text-lg font-semibold text-neutral-800">Verificación anti‑bots</p>
+              <div
+                id="turnstile-container"
+                class="flex min-h-[65px] items-center justify-center rounded-lg border-2 border-dashed border-neutral-200 bg-neutral-50/80 px-2 py-3"
+              ></div>
+              <p id="turnstile-load-error" class="mt-2 hidden text-base text-red-700" role="alert"></p>
+            </div>
+            <p class="text-lg text-neutral-600">
+              Usaremos tu correo solo para informarte sobre Nación Silver y el lanzamiento. Puedes pedir que te demos de
+              baja cuando quieras.
+            </p>
+            <button
+              type="submit"
+              id="waitlist-submit"
+              class="min-h-[52px] w-full rounded-xl bg-primary-600 px-6 py-4 text-lg font-semibold text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-200 disabled:opacity-60"
+            >
+              Enviar
+            </button>
+          </form>
+
+          <div
+            id="waitlist-success"
+            class="hidden rounded-2xl border-2 border-secondary-200 bg-white p-8 text-center text-neutral-900 shadow-xl"
+            role="status"
+            aria-live="polite"
+            tabindex="-1"
+          >
+            <p class="text-2xl font-bold text-secondary-800">¡Gracias!</p>
+            <p class="mt-4 text-lg text-neutral-700 sm:text-xl">
+              Hemos guardado tu correo. Recibirás una comunicación por correo electrónico cuando sea el lanzamiento
+              oficial de Nación Silver.
+            </p>
+          </div>
+
+          <div
+            id="waitlist-error"
+            class="hidden rounded-lg border-2 border-red-200 bg-red-50 p-6 text-lg text-red-900"
+            role="alert"
+            aria-live="assertive"
+            tabindex="-1"
+          ></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-neutral-200 bg-neutral-100 py-10 text-center">
+      <p class="text-lg text-neutral-600">
+        Derechos Reservados <span id="footer-year"></span>
+        —
+        <a
+          href="https://silvermoonve.org"
+          class="font-semibold text-primary-700 underline-offset-2 hover:underline focus:outline-none focus:ring-2 focus:ring-primary-400"
+          target="_blank"
+          rel="noopener noreferrer"
+          >SILVERMOON</a
+        >
+      </p>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

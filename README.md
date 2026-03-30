@@ -58,6 +58,39 @@ Si faltan `VITE_SUPABASE_URL` o `VITE_SUPABASE_ANON_KEY`, la app falla al inicia
 | `npm run db:link` | Enlazar CLI Supabase al proyecto remoto |
 | `npm run db:push` | Aplicar migraciones al remoto (requiere Supabase CLI y enlace) |
 | `npm run db:start` | Supabase local (Docker) |
+| `npm run landing:dev` | Desarrollo de la landing estática (`sites/landing`, Vite) |
+| `npm run landing:build` | Build de la landing → `sites/landing/dist/` |
+
+### Landing marketing (`sites/landing`)
+
+Sitio estático independiente (Vite + Tailwind) para presentar Nación Silver y la lista de espera. No enlaza a la app React; el pie enlaza a [silvermoonve.org](https://silvermoonve.org).
+
+```bash
+cd sites/landing
+npm install
+copy .env.example .env   # Windows; macOS/Linux: cp
+# Rellena VITE_SUPABASE_*, VITE_TURNSTILE_SITE_KEY (lista de espera anti-bots) — ver .env.example
+npm run dev
+npm run build   # salida en sites/landing/dist
+```
+
+**Migración:** aplica `supabase/migrations/20260330120000_waitlist_signups.sql` al proyecto Supabase (Dashboard → SQL o `npm run db:push`) para crear la tabla `waitlist_signups` y RLS antes de usar el formulario en producción.
+
+**Lista de espera:** el formulario usa **Cloudflare Turnstile** (widget + verificación en servidor) antes de insertar en Supabase. En el panel de Turnstile, incluye los hostnames donde se sirve la landing (p. ej. `nacionsilver.com`, `www.nacionsilver.com`). La Pages Function está duplicada en `sites/landing/functions/api/verify-turnstile.js` para proyectos con **root** `sites/landing`.
+
+**Cloudflare Pages (segundo proyecto / dominio apex o subdominio dedicado):**
+
+| Ajuste | Valor |
+|--------|-------|
+| **Root directory** | `sites/landing` |
+| **Build command** | `npm run build` |
+| **Build output directory** | `dist` |
+| **Variables (build)** | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_TURNSTILE_SITE_KEY` |
+| **Variable secreta (Functions)** | `TURNSTILE_SECRET_KEY` (misma Secret Key del sitio Turnstile) |
+
+`public/_redirects` en la landing replica la regla SPA por si añades rutas; el sitio actual es una sola página.
+
+Las variables `VITE_*` deben existir **en el momento del build** (local o en Cloudflare). Si faltan Supabase o Turnstile, el formulario muestra el aviso de configuración correspondiente. En local, si tienes site key pero no la Function, puedes usar `VITE_TURNSTILE_VERIFY_SKIP=true` (solo desarrollo).
 
 ---
 
